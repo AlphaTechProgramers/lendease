@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - LendEase{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Registrar Administrador</h2>
+        <form method="POST" action="{{ url_for('registro_administrador') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.correo.label(class="form-label") }}
+                {{ form.correo(class="form-control") }}
+                {% for error in form.correo.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.contrasena.label(class="form-label") }}
+                {{ form.contrasena(class="form-control") }}
+                {% for error in form.contrasena.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.llave_unica.label(class="form-label") }}
+                {{ form.llave_unica(class="form-control") }}
+                {% for error in form.llave_unica.errors %}
+                    <div class="error-message">{{ error }}</div>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% endblock %}

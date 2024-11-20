@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Página no encontrada{% endblock %}
+
+{% block content %}
+<main class="error-page" role="main" aria-labelledby="error-page__title">
+    <header class="error-page__header">
+        <h1 id="error-page__title" class="error-page__title">Error 404 - Página no encontrada</h1>
+    </header>
+    <section class="error-page__message">
+        <p class="error-page__text">Lo sentimos, la página que buscas no existe.</p>
+    </section>
+    <nav class="error-page__navigation" aria-label="Enlace de navegación">
+        <a href="{{ url_for('index') }}" class="error-page__link">Volver a la página de inicio</a>
+    </nav>
+</main>
+{% endblock %}

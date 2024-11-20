@@ -1,0 +1,74 @@
+// scss/components/_navbar.scss
+
+@use "abstracts" as abs;
+@use "sass:color";
+
+.navbar {
+  background-color: abs.$primary-color;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &__brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: abs.$text-color-light;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      color: abs.$light-background;
+    }
+
+    .logo {
+      width: 40px;
+      height: auto;
+      margin-right: 10px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+
+    .nav-link {
+      color: abs.$text-color-light;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      position: relative;
+
+      &:hover {
+        color: abs.$link-hover-color;
+        background-color: color.adjust(abs.$primary-color, $lightness: 10%);
+        border-radius: 5px;
+      }
+    }
+  }
+
+  &__button {
+    @extend abs.components.buttons.btn;
+    background-color: abs.$text-color_light;
+    color: abs.$primary-color;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin-left: 1.5rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: abs.$button-hover-bg;
+      color: abs.$text-color-light;
+    }
+  }
+
+  &__toggler {
+    border-color: abs.$text-color_light;
+    cursor: pointer;
+
+    .navbar-toggler-icon {
+      background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath stroke="%23fff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/%3E%3C/svg%3E');
+    }
+  }
+}

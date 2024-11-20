@@ -1,0 +1,75 @@
+// scss/layouts/_header.scss
+
+@use "abstracts" as abs;
+@use "sass:color";
+
+.header {
+  @include abs.center-flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: abs.$primary-color;
+  color: abs.$text-color-light;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: abs.$text-color-light;
+      text-decoration: none;
+
+      &:hover {
+        color: abs.$light-background;
+      }
+    }
+  }
+
+  .header__navigation {
+    display: flex;
+    align-items: center;
+
+    .nav-link {
+      margin-left: 1.5rem;
+      color: abs.$text-color-light;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: abs.$link-hover-color;
+      }
+    }
+
+    .header__cta {
+      margin-left: 2rem;
+      @extend .cta-button; // Reutiliza estilos del componente _buttons.scss
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .header__navigation {
+      flex-direction: column;
+      width: 100%;
+
+      .nav-link {
+        margin: 0.5rem 0;
+      }
+
+      .header__cta {
+        margin: 1rem 0 0 0;
+      }
+    }
+  }
+}

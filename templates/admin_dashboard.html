@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Panel de Administración - LendEase{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Panel de Administración</h2>
+    <p>Desde este panel, puedes gestionar todas las solicitudes de crédito y la información de los solicitantes.</p>
+    
+    <hr>
+
+    <!-- Sección de Solicitudes Pendientes -->
+    <h3>Solicitudes Pendientes de Aprobación</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID Solicitud</th>
+                <th>Solicitante</th>
+                <th>Importe</th>
+                <th>Fecha de Solicitud</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes_pendientes %}
+            <tr>
+                <td>{{ solicitud.id }}</td>
+                <td>{{ solicitud.solicitante_email }}</td>
+                <td>{{ solicitud.importe | currency }}</td>
+                <td>{{ solicitud.fecha }}</td>
+                <td>
+                   
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No hay solicitudes pendientes.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Opciones para Administrar Solicitantes -->
+    <div class="mt-4">
+   
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Perfil - LendEase{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Editar Perfil</h2>
+    <p>Actualiza tu información personal en el siguiente formulario.</p>
+    
+    <form method="POST" action="{{ url_for('editar_perfil') }}">
+        {{ form.hidden_tag() }} <!-- Para manejar CSRF si se está utilizando Flask-WTF -->
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ current_user.nombre }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
+            <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" value="{{ current_user.apellido_paterno }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="apellido_materno" class="form-label">Apellido Materno</label>
+            <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{{ current_user.apellido_materno }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="correo" class="form-label">Correo Electrónico</label>
+            <input type="email" class="form-control" id="correo" name="correo" value="{{ current_user.email }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono" value="{{ current_user.telefono }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" value="{{ current_user.direccion }}">
+        </div>
+
+        <!-- Botón para guardar cambios -->
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="{{ url_for('solicitante_dashboard') }}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

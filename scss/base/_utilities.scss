@@ -1,0 +1,53 @@
+// Utilities
+
+// Margin Helpers
+@mixin margin-helper($property, $size) {
+  .m#{$property}-#{$size} {
+    margin-#{$property}: $size;
+  }
+}
+
+@include margin-helper(t, 1rem);
+@include margin-helper(r, 1rem);
+@include margin-helper(b, 1rem);
+@include margin-helper(l, 1rem);
+
+// Padding Helpers
+@mixin padding-helper($property, $size) {
+  .p#{$property}-#{$size} {
+    padding-#{$property}: $size;
+  }
+}
+
+@include padding-helper(t, 1rem);
+@include padding-helper(r, 1rem);
+@include padding-helper(b, 1rem);
+@include padding-helper(l, 1rem);
+
+// Display Helpers
+.display-flex {
+  display: flex !important;
+}
+
+.display-block {
+  display: block !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+// Text Alignment
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+// Other utilities can be added similarly

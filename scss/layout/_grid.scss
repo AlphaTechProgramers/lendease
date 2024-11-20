@@ -1,0 +1,30 @@
+// Importar variables y mixins
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+// Grid System
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -0.75rem; // Ajuste para gutters
+  
+  &__column {
+    padding: 0.75rem;
+    flex: 1 1 100%; // Predeterminado a 100% ancho
+    
+    @media (min-width: 576px) {
+      flex: 0 0 50%; // 2 columnas en pantallas pequeñas
+      max-width: 50%;
+    }
+    
+    @media (min-width: 768px) {
+      flex: 0 0 33.3333%; // 3 columnas en pantallas medianas
+      max-width: 33.3333%;
+    }
+    
+    @media (min-width: 1200px) {
+      flex: 0 0 25%; // 4 columnas en pantallas grandes
+      max-width: 25%;
+    }
+  }
+}

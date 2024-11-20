@@ -1,0 +1,36 @@
+// scss/abstracts/_variables.scss
+
+@use "sass:color";
+
+// Variables de colores personalizados
+$primary-color: #2d2673; // Morado más oscuro
+$secondary-color: #323182;
+$gradiente: #ff00dd7c;
+$light-background: #d3dae2;
+$white-background: #ffffff;
+$text-color-dark: #323182;
+$text-color-light: #ffffff;
+$link-hover-color: $light-background;
+$button-hover-bg: color.adjust($primary-color, $lightness: 15%);
+$card-bg: #ffffff;
+$card-shadow: rgba(0, 0, 0, 0.1);
+$accent-color: #1f4b8f;
+$accent-hover: #16396e;
+$success-color: #28a745;
+$error-color: #dc3545;
+
+// Variables de transición
+$transition-duration: 0.3s;
+$transition-ease: ease;
+
+// Tema oscuro
+$dark-theme-bg: #181818;
+$dark-theme-text: #f8f9fa;
+$dark-navbar-bg: #1f1b4b;
+$dark-secondary-bg: #2a2a2a;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;

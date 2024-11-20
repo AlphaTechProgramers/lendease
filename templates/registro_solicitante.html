@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Registro de Solicitante</h2>
+
+<!-- Mostrar mensajes flash generales -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form method="post" novalidate id="registro-form">
+    {{ form.hidden_tag() }} <!-- Token CSRF -->
+
+    <!-- Paso 1: Datos personales -->
+    <div id="step-1">
+        {% macro render_field(field, label, placeholder) %}
+            <div class="form-group">
+                {{ field.label(class="form-label") }}
+                {{ field(class="form-control", placeholder=placeholder) }}
+                {% for error in field.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+        {% endmacro %}
+
+        {{ render_field(form.nombre, 'Nombre', 'Ingresa tu nombre') }}
+        {{ render_field(form.apellido_paterno, 'Apellido Paterno', 'Ingresa tu apellido paterno') }}
+        {{ render_field(form.apellido_materno, 'Apellido Materno', 'Ingresa tu apellido materno') }}
+        {{ render_field(form.correo, 'Correo Electrónico', 'correo@ejemplo.com') }}
+
+        <!-- Botón siguiente para paso 1 -->
+        <div class="form-group text-center">
+            <button type="button" class="btn btn-primary" id="next-step-1">Siguiente</button>
+        </div>
+    </div>
+
+    <!-- Paso 2: Detalles adicionales -->
+    <div id="step-2" style="display: none;">
+        {{ render_field(form.contrasena, 'Contraseña', 'Ingresa una contraseña segura') }}
+        {{ render_field(form.genero, 'Género', '') }}
+        {{ render_field(form.edad, 'Edad', 'Ingresa tu edad') }}
+        {{ render_field(form.pais, 'País', '') }}
+        {{ render_field(form.estado, 'Estado/Provincia', '') }}
+        {{ render_field(form.municipio, 'Municipio', 'Ingresa tu municipio') }}
+        {{ render_field(form.colonia, 'Colonia', 'Ingresa tu colonia') }}
+        {{ render_field(form.calle, 'Calle', 'Ingresa el nombre de tu calle') }}
+        {{ render_field(form.numero_int, 'Numero interior', 'Ingresa tu numero interior') }}
+        {{ render_field(form.numero_ext, 'Numero exterior', 'Ingresa tu numero exterior') }}
+        {{ render_field(form.rfc, 'RFC', 'Ingresa tu RFC') }}
+        {{ render_field(form.curp, 'Curp', 'Ingresa tu CURP') }}
+
+        <!-- Botón de envío -->
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-success">Registrarme</button>
+        </div>
+    </div>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Acción para cambiar al paso 2
+    $('#next-step-1').click(function() {
+        $('#step-1').hide();
+        $('#step-2').show();
+    });
+
+    // Cambio de estados basado en el país
+    $('#pais').change(function() {
+        var country_code = $(this).val();
+
+        if (country_code) {
+            $.ajax({
+                url: '/get_subdivisions/' + country_code,
+                type: 'GET',
+                success: function(response) {
+                    var estado_select = $('#estado');
+                    estado_select.empty();
+                    estado_select.append('<option value="">Selecciona un estado/provincia</option>');
+                    if (response.length > 0) {
+                        $.each(response, function(index, subdivision) {
+                            estado_select.append('<option value="' + subdivision[0] + '">' + subdivision[1] + '</option>');
+                        });
+                    } else {
+                        estado_select.append('<option value="">No hay subdivisiones disponibles</option>');
+                    }
+                }
+            });
+        } else {
+            $('#estado').empty();
+            $('#estado').append('<option value="">Selecciona un estado/provincia</option>');
+        }
+    });
+});
+</script>
+
+{% endblock %}

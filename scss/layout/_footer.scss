@@ -1,0 +1,53 @@
+// Importar variables y mixins
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+// Layout Footer Styling
+.layout-footer {
+  background-color: $primary-color;
+  color: $text-color-light;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .layout-footer__section {
+    margin: 1rem 0;
+    
+    @media (min-width: 768px) {
+      margin: 0;
+    }
+  }
+  
+  .layout-footer__social-media {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    
+    a {
+      margin: 0 0.5rem;
+      color: $text-color-light;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+  }
+  
+  .layout-footer__copyright {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #ccc;
+    
+    @media (min-width: 768px) {
+      margin-top: 0;
+    }
+  }
+}

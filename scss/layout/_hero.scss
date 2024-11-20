@@ -1,0 +1,68 @@
+// scss/layouts/_hero.scss
+
+@use "abstracts" as abs;
+@use "sass:color";
+
+.layout-hero {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  color: abs.$text-color-light;
+  background-image: linear-gradient(270deg, #09bfa0, #ff00dd7c, #531c56, #09bfa0), url('/static/img/hero.jpg');
+  background-size: 800% 800%, cover;
+  background-position: 0% 50%, center;
+  background-repeat: no-repeat, no-repeat;
+  animation: GradientAnimation 15s ease infinite;
+
+  .layout-hero__content {
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .layout-hero__title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+
+    @include abs.responsive-font(2.5rem, 3rem);
+  }
+
+  .layout-hero__description {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+
+    @include abs.responsive-font(1rem, 1.25rem);
+  }
+
+  .layout-hero__cta {
+    @extend abs.buttons.cta-button; // Asegúrate de que el namespace es correcto
+  }
+
+  @media (max-width: 768px) {
+    .layout-hero__title {
+      font-size: 2.5rem;
+    }
+
+    .layout-hero__description {
+      font-size: 1rem;
+    }
+  }
+}
+
+// Keyframes for Gradient Animation
+@keyframes GradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

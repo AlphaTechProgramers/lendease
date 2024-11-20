@@ -1,0 +1,38 @@
+<!-- templates/admisiones.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admisiones - LendEase</title>
+</head>
+<body>
+    <h1>Admisión de Solicitantes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Correo Electrónico</th>
+                <th>Nombre Completo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+            <tr>
+                <td>{{ solicitud.id_so }}</td>
+                <td>{{ solicitud.correo_so }}</td>
+                <td>{{ solicitud.nombre_so }} {{ solicitud.apellido_paterno_so }} {{ solicitud.apellido_materno_so }}</td>
+                <td>
+                    <form action="{{ url_for('aprobar_solicitud', id_so=solicitud.id_so) }}" method="post" style="display:inline;">
+                        <button type="submit">Aprobar</button>
+                    </form>
+                    <form action="{{ url_for('rechazar_solicitud', id_so=solicitud.id_so) }}" method="post" style="display:inline;">
+                        <button type="submit">Rechazar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

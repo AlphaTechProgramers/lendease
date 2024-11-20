@@ -1,0 +1,64 @@
+// scss/components/_buttons.scss
+
+@use "abstracts" as abs;
+@use "sass:color";
+
+.button,
+.submit-button,
+.cta-button,
+.register-button {
+  @include abs.transition(all);
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+
+  &.submit-button {
+    background-color: abs.$primary-color;
+    color: abs.$text-color-light;
+
+    &:hover {
+      background-color: abs.$button-hover-bg;
+    }
+  }
+
+  &.cta-button {
+    background-color: abs.$button-hover-bg;
+    color: abs.$text-color-light;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: color.adjust(abs.$button-hover-bg, $lightness: -10%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+
+  &.register-button {
+    background-color: abs.$accent-color;
+    color: abs.$text-color-light;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      background-color: abs.$accent-hover;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      animation: pulse 1s infinite;
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+}

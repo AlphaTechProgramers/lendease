@@ -1,0 +1,22 @@
+// scss/abstracts/_functions.scss
+
+@use "sass:color";
+
+// Función para ajustar la opacidad
+@function rgba-opacity($color, $alpha) {
+  @return color.scale($color, $alpha: $alpha * 100%);
+}
+
+// Función para ajustar la claridad del color
+@function lighten-darken($color, $amount) {
+  @if $amount > 0 {
+    @return color.scale($color, $lightness: $amount);
+  } @else {
+    @return color.scale($color, $lightness: $amount);
+  }
+}
+
+// Función personalizada para ajuste de lightness
+@function adjust-lightness($color, $percentage) {
+  @return color.adjust($color, $lightness: $percentage);
+}

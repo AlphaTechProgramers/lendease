@@ -1,0 +1,17 @@
+# Dev environment
+pip
+autopep8
+
+# App
+Flask
+Flask-WTF
+flask-login
+WTForms
+email-validator
+mysql-connector-python
+pymysql
+cryptography
+flask-mail
+email_validator
+pycountry
+geonamescache

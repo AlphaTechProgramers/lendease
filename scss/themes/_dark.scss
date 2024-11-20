@@ -1,0 +1,30 @@
+// Dark Theme
+
+body.dark-theme {
+  background-color: $dark-theme-bg;
+  color: $dark-theme-text;
+
+  .navbar {
+    background-color: $dark-navbar-bg;
+    color: $dark-theme-text;
+
+    .nav-link {
+      color: $dark-theme-text;
+
+      &:hover {
+        color: color.adjust($dark-theme-text, $lightness: 20%);
+      }
+    }
+
+    .btn {
+      background-color: $dark-theme-text;
+      color: $dark-navbar-bg;
+
+      &:hover {
+        background-color: color.adjust($dark-theme-text, $lightness: 10%);
+      }
+    }
+  }
+
+  // Otros estilos específicos del tema oscuro
+}

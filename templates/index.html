@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - LendEase{% endblock %}
+
+{% block content %}
+
+<ul class="nav justify-content-center">
+
+  <li class="nav-item">
+    <a class="nav-link" href="#inicio">Inicio</a>
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link" href="#preguntas">Preguntas Frecuentes</a>
+  </li>
+
+  <li class="nav-item">
+      <a class="nav-link" href="#comofunciona">Como funciona</a>
+  </li>
+
+
+  <li class="nav-item">
+      <a class="nav-link" href="#contactos">Contactanos</a>
+  </li>
+  
+</ul>
+
+
+<section class="hero" id="inicio">
+    <div class="hero-content">
+        <h1>LendEase</h1>
+        <p>Más fácil, rápido y seguro</p>
+        <a href="{{ url_for('login') }}" class="cta-button">Comienza Ahora</a>
+    </div>
+</section>
+
+
+<div class="loan-calculator">
+    <h2>Calculadora de Préstamos</h2>
+  
+    <div class="slider-section">
+      <label class="slider-label" for="loan-amount">Monto del Préstamo</label>
+      <input type="range" id="loan-amount" name="loan-amount" min="1000" max="50000" step="500" value="10000">
+      <div class="slider-value" id="loan-amount-value">10,000</div>
+    </div>
+  
+    <div class="slider-section">
+      <label class="slider-label" for="loan-term">Plazo (meses)</label>
+      <input type="range" id="loan-term" name="loan-term" min="6" max="60" step="6" value="12">
+      <div class="slider-value" id="loan-term-value">12</div>
+    </div>
+  
+    <div class="loan-summary">
+      <table>
+        <tr>
+          <td>Interés Anual</td>
+          <td class="result updated">5%</td>
+        </tr>
+        <tr>
+          <td>Pago Mensual</td>
+          <td class="result updated">$850</td>
+        </tr>
+        <tr>
+          <td>Total a Pagar</td>
+          <td class="result updated">$10,200</td>
+        </tr>
+      </table>
+    </div>
+  
+    <div class="registration-section">
+      <button class="register-button">Solicitar Préstamo</button>
+      <p class="interest-info">* Los términos están sujetos a aprobación.</p>
+    </div>
+  </div>
+  
+
+<!-- Vincula el archivo JavaScript -->
+<script src="static/js/loan-calculator.js"></script>
+
+<div class="accordion" id="preguntas">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Accordion Item #1
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container text-center" id="comofunciona">
+  <div class="row align-items-start">
+    <!-- Columna 1 -->
+    <div class="col d-flex flex-column align-items-center">
+      <!-- Imagen de Etapa 1 -->
+      <img src="static/img/etapa1.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 1">
+
+      <!-- Tarjeta de Etapa 1 -->
+      <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Etapa 1</div>
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+
+      <!-- Imagen de Etapa 3 -->
+      <img src="static/img/etapa3.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 3">
+
+      <!-- Tarjeta de Etapa 3 -->
+      <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Etapa 3</div>
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna 2 -->
+    <div class="col d-flex flex-column align-items-center">
+      <!-- Imagen de Etapa 2 -->
+      <img src="static/img/etapa2.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 2">
+
+      <!-- Tarjeta de Etapa 2 -->
+      <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
+        <div class="card-header">Etapa 2</div>
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+
+      <!-- Imagen de Etapa 4 -->
+      <img src="static/img/etapa4.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 4">
+
+      <!-- Tarjeta de Etapa 4 -->
+      <div class="card text-bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Etapa 4</div>
+        <div class="card-body">
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div id="contactos">
+
+<p>contactos</p>
+
+</div>
+
+
+
+{% endblock %}

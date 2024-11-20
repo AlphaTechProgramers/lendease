@@ -1,0 +1,31 @@
+// Light Theme
+
+body.light-theme {
+    background-color: $white-background;
+    color: $text-color-dark;
+  
+    .navbar {
+      background-color: $primary-color;
+      color: $text-color-light;
+      
+      .nav-link {
+        color: $text-color-light;
+  
+        &:hover {
+          color: $link-hover-color;
+        }
+      }
+  
+      .btn {
+        background-color: $text-color-light;
+        color: $primary-color;
+  
+        &:hover {
+          background-color: $button-hover-bg;
+        }
+      }
+    }
+  
+    // Otros estilos específicos del tema claro
+  }
+  

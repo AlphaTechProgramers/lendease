@@ -1,0 +1,51 @@
+// Forms
+
+.form-group {
+    margin-bottom: 1.5rem;
+  
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: $text-color-dark;
+    }
+  
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      @include transition(border-color);
+  
+      &:focus {
+        border-color: $accent-color;
+        outline: none;
+        box-shadow: 0 0 5px rgba($accent-color, 0.5);
+      }
+    }
+  
+    .error {
+      color: $error-color;
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+  }
+  
+  .form-inline {
+    display: flex;
+    align-items: center;
+  
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      flex: 1;
+      margin-right: 1rem;
+    }
+  
+    button {
+      @extend .button;
+    }
+  }
+  

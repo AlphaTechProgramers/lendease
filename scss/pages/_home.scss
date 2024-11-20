@@ -1,0 +1,34 @@
+// Home Page Styles
+
+.home-hero {
+    @extend .layout-hero;
+    background-image: linear-gradient(270deg, #09bfa0, #ff00dd7c, #531c56, #09bfa0), url('/static/img/home-hero.jpg');
+    animation-duration: 20s;
+  }
+  
+  .home-featured {
+    padding: 4rem 0;
+    background-color: lighten($white-background, 10%);
+  
+    .featured-item {
+      @extend .card;
+      text-align: center;
+  
+      &__icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: $accent-color;
+      }
+  
+      &__title {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+  
+      &__description {
+        font-size: 1rem;
+        color: #555;
+      }
+    }
+  }
+  

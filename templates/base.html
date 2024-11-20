@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LendEase{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" class="logo"> LendEase
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.role == "solicitante" %}
+                            <!-- Opciones para el solicitante -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('solicitante_dashboard') }}">Mi Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('proceso_solicitud') }}">Nueva Solicitud</a>
+                            </li>
+                        {% elif current_user.role == "administrador" %}
+                            <!-- Opciones para el administrador -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('admin_dashboard') }}">Panel de Administración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('registro_solicitante') }}">Registrar Solicitante</a>
+                            </li>
+                        {% endif %}
+                        <!-- Opción común para cerrar sesión -->
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-light text-dark" href="{{ url_for('logout') }}">Cerrar Sesión</a>
+                        </li>
+                    {% else %}
+                        <!-- Opciones para usuarios no autenticados -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('login') }}">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('registro_solicitante') }}">Regístrate</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido dinámico -->
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-4">
+        <div class="container">
+            <div class="row">
+                <!-- Primera columna: Sobre Nosotros -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5>Sobre Nosotros</h5>
+                    <p>En LendEase, facilitamos la gestión de créditos y finanzas personales para ayudarte a alcanzar tus metas.</p>
+                </div>
+                <!-- Segunda columna: Enlaces Útiles -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5>Enlaces Útiles</h5>
+                    <ul class="list-unstyled">
+                        <li><a class="enlacesFotter" href="{{ url_for('index') }}">Inicio</a></li>
+                        <li><a class="enlacesFotter" href="#">Preguntas Frecuentes</a></li>
+                        <li><a class="enlacesFotter" href="#">Cómo Funciona</a></li>
+                        <li><a class="enlacesFotter" href="#">Contáctanos</a></li>
+                    </ul>
+                </div>
+                <!-- Tercera columna: Contacto -->
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li>Email: soporte@lendease.com</li>
+                        <li>Teléfono: (55) 3683 9260</li>
+                        <li>Dirección: Col. Del Valle, Del. Benito Juárez, C.P. 03100.</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Redes sociales -->
+            <div class="text-center">
+                <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+    
+            <p class="text-center mt-3">© 2024 LendEase. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón para alternar el tema oscuro -->
+    <button class="theme-toggle-btn btn btn-secondary" id="theme-toggle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        Modo Oscuro
+    </button>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+// Importar mixins y variables
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+// Estilos básicos para el cuerpo
+body {
+  @include transition(background-color, color);
+  background-color: $white-background;
+  color: $text-color-dark;
+}
+
+// Contenedor general
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+  @media (min-width: 768px) {
+    max-width: 720px;
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 960px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1140px;
+  }
+}
+
+// Botones
+button,
+.submit-button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: $text-color-light;
+  background-color: $primary-color;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  @include transition(background-color);
+
+  &:hover {
+    background-color: $button-hover-bg;
+  }
+}
+
+// Contenedor de columnas flexibles
+.container-columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+// Clases para espaciado y alineación
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }

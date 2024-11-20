@@ -1,0 +1,26 @@
+// scss/abstracts/_mixins.scss
+
+@forward "placeholders"; // Si tienes placeholders que quieres exponer
+
+@mixin transition($properties...) {
+  transition: $properties $transition-duration $transition-ease;
+}
+
+@mixin center-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin responsive-font($mobile-size, $desktop-size) {
+  font-size: $desktop-size;
+
+  @media (max-width: 768px) {
+    font-size: $mobile-size;
+  }
+}
+
+@mixin gradient-background {
+  background-size: 800% 800%;
+  animation: GradientAnimation 15s ease infinite;
+}

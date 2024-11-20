@@ -1,0 +1,54 @@
+// Importar variables y mixins
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+// Sidebar Layout Styling
+.layout-sidebar {
+  width: 250px;
+  background-color: $dark-secondary-bg;
+  padding: 1.5rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  
+  &.is-hidden {
+    transform: translateX(-100%);
+  }
+  
+  .layout-sidebar__close {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+  
+  .layout-sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    
+    .sidebar-link {
+      color: $text-color-light;
+      text-decoration: none;
+      padding: 0.75rem 0;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $link-hover-color;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .layout-sidebar__close {
+      display: block;
+    }
+  }
+}
