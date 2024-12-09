@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, IntegerField, DecimalField
 from wtforms.validators import DataRequired, Email, Length, Regexp, ValidationError, NumberRange
 from email_validator import validate_email, EmailNotValidError
 import pymysql
@@ -8,8 +8,13 @@ import re
 from flask import request
 
 def validar_correo(form, field):
+    correo = field.data
     try:
-        validate_email(field.data, check_deliverability=True)
+        validate_email(correo, check_deliverability=True)
+        dominio = correo.split('@')[1]
+        partes_dominio = dominio.split('.')
+        if len(partes_dominio) != len(set(partes_dominio)):
+            raise ValidationError("El correo electrónico no es válido.")
     except EmailNotValidError as e:
         raise ValidationError("El correo electrónico no es válido: " + str(e))
 
@@ -165,3 +170,25 @@ class LoginForm(FlaskForm):
     correo = StringField('Correo Electrónico', validators=[DataRequired(), Email()])
     contrasena = PasswordField('Contraseña', validators=[DataRequired()])
     submit = SubmitField('Iniciar Sesión')
+
+class ReestructuracionCreditoForm(FlaskForm):
+    # Monto del crédito (valor decimal, sin 'round')
+    importe = DecimalField('Nuevo monto del crédito', 
+                           places=2,  # Número de decimales permitidos
+                           validators=[DataRequired(), NumberRange(min=1, message="El monto debe ser mayor que 0")])
+    
+    # Periodicidad de pago (por ejemplo: mensual, trimestral, anual)
+    periodicidad = SelectField('Nueva periodicidad de pago', 
+                               choices=[('mensual', 'Mensual'), 
+                                        ('trimestral', 'Trimestral'),
+                                        ('semestral', 'Semestral'),
+                                        ('anual', 'Anual')],
+                               validators=[DataRequired()])
+    
+    # Monto del pago mensual o cantidad de pago por periodo
+    cantidad_pago = DecimalField('Nuevo monto de pago por periodo', 
+                                 places=2, 
+                                 validators=[DataRequired(), NumberRange(min=1, message="El pago por periodo debe ser mayor que 0")])
+    
+    # Botón de envío
+    submit = SubmitField('Reestructurar crédito')

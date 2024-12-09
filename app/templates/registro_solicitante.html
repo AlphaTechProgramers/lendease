@@ -1,0 +1,246 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Registro de Solicitante</h2>
+    <p>Completa los campos obligatorios para registrarte como solicitante.</p>
+    
+    <!-- Mensajes flash agrupados -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert-messages">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Formulario -->
+    <form method="post" id="registro-form">
+        {{ form.hidden_tag() }}
+        
+        <!-- Campo: Nombre -->
+        <div class="form-group">
+            {{ form.nombre.label(class="form-label") }}
+            {{ form.nombre(class="form-control", placeholder="Ingresa tu nombre") }}
+            {% for error in form.nombre.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Apellido Paterno -->
+        <div class="form-group">
+            {{ form.apellido_paterno.label(class="form-label") }}
+            {{ form.apellido_paterno(class="form-control", placeholder="Ingresa tu apellido paterno") }}
+            {% for error in form.apellido_paterno.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Apellido Materno -->
+        <div class="form-group">
+            {{ form.apellido_materno.label(class="form-label") }}
+            {{ form.apellido_materno(class="form-control", placeholder="Ingresa tu apellido materno") }}
+            {% for error in form.apellido_materno.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Correo -->
+        <div class="form-group">
+            {{ form.correo.label(class="form-label") }}
+            {{ form.correo(class="form-control", placeholder="correo@ejemplo.com") }}
+            {% for error in form.correo.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Contraseña -->
+        <div class="form-group">
+            {{ form.contrasena.label(class="form-label") }}
+            {{ form.contrasena(class="form-control", placeholder="Crea una contraseña segura") }}
+            {% for error in form.contrasena.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Género -->
+        <div class="form-group">
+            {{ form.genero.label(class="form-label") }}
+            {{ form.genero(class="form-select") }}
+            {% for error in form.genero.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Edad -->
+        <div class="form-group">
+            {{ form.edad.label(class="form-label") }}
+            {{ form.edad(class="form-control", placeholder="Ingresa tu edad") }}
+            {% for error in form.edad.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: País -->
+        <div class="form-group">
+            {{ form.pais.label(class="form-label") }}
+            {{ form.pais(class="form-select") }}
+            {% for error in form.pais.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Estado -->
+        <div class="form-group">
+            {{ form.estado.label(class="form-label") }}
+            {{ form.estado(class="form-select", id="estado") }}
+            {% for error in form.estado.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Municipio -->
+        <div class="form-group">
+            {{ form.municipio.label(class="form-label") }}
+            {{ form.municipio(class="form-control", placeholder="Ingresa tu municipio") }}
+            {% for error in form.municipio.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Colonia -->
+        <div class="form-group">
+            {{ form.colonia.label(class="form-label") }}
+            {{ form.colonia(class="form-control", placeholder="Ingresa tu colonia") }}
+            {% for error in form.colonia.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Calle -->
+        <div class="form-group">
+            {{ form.calle.label(class="form-label") }}
+            {{ form.calle(class="form-control", placeholder="Ingresa tu calle") }}
+            {% for error in form.calle.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Número Interior -->
+        <div class="form-group">
+            {{ form.numero_int.label(class="form-label") }}
+            {{ form.numero_int(class="form-control", placeholder="Número interior (opcional)") }}
+            {% for error in form.numero_int.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: Número Exterior -->
+        <div class="form-group">
+            {{ form.numero_ext.label(class="form-label") }}
+            {{ form.numero_ext(class="form-control", placeholder="Número exterior") }}
+            {% for error in form.numero_ext.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: RFC -->
+        <div class="form-group">
+            {{ form.rfc.label(class="form-label") }}
+            {{ form.rfc(class="form-control", placeholder="Ingresa tu RFC") }}
+            {% for error in form.rfc.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Campo: CURP -->
+        <div class="form-group">
+            {{ form.curp.label(class="form-label") }}
+            {{ form.curp(class="form-control", placeholder="Ingresa tu CURP") }}
+            {% for error in form.curp.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        
+        <!-- Botón de envío -->
+        <div class="form-group mt-3">
+            <button type="submit" class="cta-button">Registrar</button>
+        </div>
+    </form>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Cambio de estados basado en el país
+    $('#pais').change(function() {
+        var country_code = $(this).val();
+
+        if (country_code) {
+            $.ajax({
+                url: '/get_subdivisions/' + country_code,
+                type: 'GET',
+                success: function(response) {
+                    var estado_select = $('#estado');
+                    estado_select.empty();
+                    estado_select.append('<option value="">Selecciona un estado/provincia</option>');
+                    if (response.length > 0) {
+                        $.each(response, function(index, subdivision) {
+                            estado_select.append('<option value="' + subdivision[0] + '">' + subdivision[1] + '</option>');
+                        });
+                    } else {
+                        estado_select.append('<option value="">No hay subdivisiones disponibles</option>');
+                    }
+                }
+            });
+        } else {
+            $('#estado').empty();
+            $('#estado').append('<option value="">Selecciona un estado/provincia</option>');
+        }
+    });
+});
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registro-form');
+
+    form.addEventListener('submit', function(event) {
+        let valid = true;
+
+        // Validar contraseña
+        const contrasena = document.querySelector('input[name="contrasena"]');
+        const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordRegex.test(contrasena.value)) {
+            showError(contrasena, 'La contraseña debe tener al menos 8 caracteres, incluyendo una letra y un número.');
+            valid = false;
+        }
+
+        if (!valid) {
+            event.preventDefault();
+        }
+    });
+
+    function showError(input, message) {
+        const parent = input.closest('.form-group');
+        let errorElement = parent.querySelector('.text-danger');
+        if (!errorElement) {
+            errorElement = document.createElement('div');
+            errorElement.className = 'text-danger';
+            parent.appendChild(errorElement);
+        }
+        errorElement.textContent = message;
+    }
+});
+
+    </script>
+    
+
+{% endblock %}

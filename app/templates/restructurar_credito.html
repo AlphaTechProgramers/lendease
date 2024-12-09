@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Reestructuración de crédito</h2>
+
+<form method="POST" action="{{ url_for('main.restructurar_credito', credito_id=credito.id) }}">
+    {{ form.hidden_tag() }}
+
+    <div class="form-group">
+        <label for="importe">Nuevo monto del crédito</label>
+        {{ form.importe(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="periodicidad">Nueva periodicidad de pago</label>
+        {{ form.periodicidad(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        <label for="cantidad_pago">Nuevo monto de pago por periodo</label>
+        {{ form.cantidad_pago(class="form-control") }}
+    </div>
+
+    <div class="form-group">
+        {{ form.submit(class="cta-button") }}
+    </div>
+</form>
+
+{% endblock %}

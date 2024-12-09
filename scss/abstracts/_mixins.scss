@@ -1,9 +1,10 @@
 // scss/abstracts/_mixins.scss
 
 @forward "placeholders"; // Si tienes placeholders que quieres exponer
+@use "variables" as var;
 
 @mixin transition($properties...) {
-  transition: $properties $transition-duration $transition-ease;
+  transition: $properties var.$transition-duration var.$transition-ease;
 }
 
 @mixin center-flex {

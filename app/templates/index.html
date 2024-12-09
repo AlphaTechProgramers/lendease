@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio - LendEase{% endblock %}
+
+{% block content %}
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+      <a class="enlaces" href="#inicio">Inicio</a>
+  </li>
+  <li><span>│</span></li>  <!-- Cambié el <p> por <span> -->
+  <li class="nav-item">
+      <a class="enlaces" href="#preguntas">Preguntas Frecuentes</a>
+  </li>
+  <li><span>│</span></li>  <!-- Cambié el <p> por <span> -->
+  <li class="nav-item">
+      <a class="enlaces" href="#comofunciona">Cómo Funciona</a>
+  </li>
+  <li><span>│</span></li>  <!-- Cambié el <p> por <span> -->
+    <li class="nav-item">
+      <a class="enlaces" href="#contactos">Cóntactanos</a>
+  </li>
+  <li><span>│</span></li>  <!-- Cambié el <p> por <span> -->
+
+  {% if current_user.is_authenticated %}
+      {% if current_user.role == "solicitante" %}
+      <li class="nav-item">
+          <a class="enlaces" href="{{ url_for('main.solicitante_dashboard') }}">Mi Cuenta</a>
+      </li>
+
+      {% endif %}        
+      {% if current_user.role == "gerente" %}
+          <li class="nav-item">
+              <a class="enlaces" href="{{ url_for('gerente.gerente_dashboard') }}">Administrar</a>
+          </li>
+      {% endif %}
+  {% else %}
+      <li class="nav-item">
+          <a class="enlaces" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
+      </li>
+      <li><span>│</span></li>  <!-- Cambié el <p> por <span> -->
+      <li class="nav-item">
+          <a class="enlaces" href="{{ url_for('auth.registro_solicitante') }}">Registrarse</a>
+      </li>
+  {% endif %}
+</ul>
+
+
+<br>
+<br>
+<br>
+
+<!-- Sección Hero -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+      <h1>LendEase</h1>
+      <p>Más fácil, rápido y seguro</p>
+      {% if current_user.is_authenticated %}
+          {% if current_user.role == "solicitante" %}
+          <li class="nav-item">
+              <a class="cta-button" href="{{ url_for('main.solicitante_dashboard') }}">Mi Cuenta</a>
+          </li>
+          {% endif %}        
+          {% if current_user.role == "gerente" %}
+              <li class="nav-item">
+                  <a class="cta-button" href="{{ url_for('gerente.gerente_dashboard') }}">Administrar</a>
+              </li>
+          {% endif %}
+      {% else %}
+          <a href="{{ url_for('auth.login') }}" class="cta-button">Comienza Ahora</a>
+      {% endif %}
+  </div>
+</section>
+<div class="loan-calculator">
+    <h2>Calculadora de Préstamos</h2>
+
+    <div class="slider-section">
+        <label class="slider-label" for="loan-amount">Monto del Préstamo</label>
+        <input type="range" id="loan-amount" name="loan-amount" min="1000" max="50000" step="500" value="10000">
+        <div class="slider-value" id="loan-amount-value">10,000</div>
+    </div>
+
+    <div class="slider-section">
+        <label class="slider-label" for="loan-term">Plazo (meses)</label>
+        <input type="range" id="loan-term" name="loan-term" min="6" max="60" step="6" value="12">
+        <div class="slider-value" id="loan-term-value">12</div>
+    </div>
+
+    <div class="loan-summary">
+        <table>
+            <tr>
+                <td>Interés Anual</td>
+                <td class="result updated">5%</td>
+            </tr>
+            <tr>
+                <td>Pago Mensual</td>
+                <td class="result updated">$850</td>
+            </tr>
+            <tr>
+                <td>Total a Pagar</td>
+                <td class="result updated">$10,200</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="registration-section">
+        <button class="register-button">Solicitar Préstamo</button>
+        <p class="interest-info">* Los términos están sujetos a aprobación.</p>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/loan-calculator.js') }}"></script>
+
+<div class="accordion" id="preguntas">
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        ¿Cuánto me puede prestar Leasingtech y a qué plazo?
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        En el primer préstamo Express puedes pedir hasta $1,000 pesos dentro de un plazo de 1 a 30 días. Tú decides como quieres tu préstamo en cuanto a monto y/o plazo que más te convenga. En cuanto realices tu primer pago a tiempo, automáticamente se incrementan tus posibilidades de aumentar tú límite de crédito. Lo importante es generar un historial crediticio en Leasingtech.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        ¿Qué tasa de interés me cobra Leasingtech?
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        La tasa de interés es del 1.19% por cada día del préstamo. La tasa de interés es fija.   El Costo Anual Total (CAT) varía dependiendo por el tiempo que requieras el préstamo, teniendo una base anual del 360%.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        ¿Leasingtech es una Institución Bancaria?
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        No, Leasingtech no somos una Institución Bancaria. No captamos depósitos del público ni tampoco ofrecemos cuentas de ahorro e inversión.
+
+Leasingtech es un servicio financiero completamente en línea. Nos puedes escribir cuando quieras a contacto@leasingtech.com.mx. Las oficinas centrales de Leasintech están ubicadas en Av. Coyoacan 1622 Edificio 4 Piso 2; Colonia Del Valle, Alcaldía Benito Juárez, México CP. 03100.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        ¿Cómo hace Leasingtech para depositarme el préstamo y cómo puedo hacer mi pago?
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        Leasingtech utiliza un sistema de pagos electrónicos, que directamente se depositan en una cuenta bancaria específica que debe estar a tu nombre. El pago de tu préstamo se hace por transferencia electrónica o domiciliando alguna cuenta bancaria.
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+        ¿Cuáles el proceso para solicitar un préstamo personal en Leasingtech?
+      </button>
+    </h2>
+    <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        El proceso de solicitud de préstamo es muy sencillo y se realiza 100% por internet. En tan sólo 3 pasos podrás solicitar un préstamo:
+
+1. Entra a www.leasingtech.com.mx y selecciona el monto que requieres y el plazo que lo deseas pagar.
+
+2. Llena la solicitud de préstamo Leasingtech (es importante que nos proporciones toda la información posible ya que habrá mayor probabilidad de que tú préstamos sea autorizado.
+
+3. ¡¡ Espera tú respuesta !!
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+        Una vez que sea ingresado la solicitud, ¿cuánto tiempo se tarda Leasingtech para tomar una decisión?
+      </button>
+    </h2>
+    <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        Una vez que nos recibimos la solicitud con toda la información y la documentación correspondiente, en horario laborable tardamos aproximadamente 30 minutos en darte una respuesta. Al firmar los términos y condiciones se acepta también la contratación del préstamo en monto, plazo y tasa, solicitada en la plataforma www.leasingtech.com.mx  y nos tomará máximo 24 horas hábiles hacer el depósito a tu cuenta.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
+<br>
+<br>
+
+
+
+<div class="container text-center" id="comofunciona">
+  <div class="row align-items-start">
+    
+    <div class="col d-flex flex-column align-items-center">
+      
+      <img src="static/img/etapa1.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 1">
+
+      <!-- Tarjeta de Etapa 1 -->
+      <div class="card text-bg-primary-color mb-3" style="max-width: 18rem;">
+        <div class="card-header
+          <p class="lead">
+            Coméntanos cuánto dinero necesitas.
+          </p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Sin mayor papeleo, evitar perdida de tiempo en filas para pedir préstamos rápidos, ¡nuestro servicio es 100% en línea!  Usa la barra dinámica para seleccionar el monto de préstamo que requieres y el plazo que necesitas. Inmediatamente conocerás cuál será tu pago a realizar.</p>
+        </div>
+      </div>
+
+      
+      <img src="static/img/etapa3.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 3">
+
+      
+      <div class="card text-bg-primary-color mb-3" style="max-width: 18rem;">
+        <div class="card-header">Etapa 3</div>
+        <div class="card-body">
+          <p class="lead">
+            Obtén nuestro préstamo Express.
+          </p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Responderemos a tu solicitud inmediatamente en el horario laboral, y si eres aprobado, ¡recibirás tu Préstamo Express en tu cuenta bancaria en menos de 24 horas!</p>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="col d-flex flex-column align-items-center">
+
+      <img src="static/img/etapa2.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 2">
+
+      
+      <div class="card text-bg-primary-color mb-3" style="max-width: 18rem;">
+        <div class="card-header">Etapa 2</div>
+        <div class="card-body">
+          <p class="lead">
+            ¡Queremos conocerte más!
+          </p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Regístrate, llena tus datos y tu solicitud de crédito con información personal y cuentas bancarias. Así podremos conocerte mejor. Para tu seguridad la documentación que ingreses en la plataforma estará encriptada y será utilizada únicamente para la evaluación de tu crédito y será resguardada.</p>
+        </div>
+      </div>
+
+      
+      <img src="static/img/etapa4.png" class="rounded mb-3" style="max-width: 18rem;" alt="Etapa 4">
+
+
+      <div class="card text-bg-primary-color mb-3" style="max-width: 18rem;">
+        <div class="card-header">Ultima etapa</div>
+        <div class="card-body">
+          <p class="lead">
+            Liquida tu Préstamo Express.
+          </p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Tú pago será a través de transferencia bancaria a la cuenta STP que te proporcionamos en la apertura de tú préstamo.
+
+Como te diste cuenta, solicitar préstamos en línea es muy sencillo y más seguro de lo que pensabas. </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="contactos">
+    <!-- Contenido de contacto -->
+</div>
+
+{% endblock %}

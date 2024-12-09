@@ -1,0 +1,30 @@
+@use "../abstracts" as abs;
+@use "sass:color";
+
+
+.enlaces {
+    color: abs.$primary-color;
+    font-family: 'Segoe UI', sans-serif;
+    text-decoration: none;  // Elimina el subrayado por defecto
+  
+    &:hover {
+      color: abs.$third-color;
+      
+      // Asegurarse de que el subrayado se mantenga eliminado en hover
+      text-decoration: none;  // Elimina el subrayado también cuando el cursor está encima
+    }
+  }
+  
+  
+  
+  .enlacesFotter {
+    color: abs.$text-color-light;
+    font-family: 'Segoe UI', sans-serif;
+  
+    &:hover {
+      color: color.adjust(abs.$text-color-light, $lightness: 10%); // Reemplazo de lighten()
+      text-decoration: none;
+    }
+  }
+
+  

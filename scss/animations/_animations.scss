@@ -1,4 +1,5 @@
 // Animations
+@use "../abstracts/variables" as vars;
 
 @keyframes fadeInUp {
     from {
@@ -25,15 +26,15 @@
   @keyframes pulse {
     0% {
       transform: scale(1);
-      box-shadow: 0 0 0 0 rgba($accent-color, 0.7);
+      box-shadow: 0 0 0 0 rgba(vars.$accent-color, 0.7);
     }
     70% {
       transform: scale(1.05);
-      box-shadow: 0 0 0 10px rgba($accent-color, 0);
+      box-shadow: 0 0 0 10px rgba(vars.$accent-color, 0);
     }
     100% {
       transform: scale(1);
-      box-shadow: 0 0 0 0 rgba($accent-color, 0);
+      box-shadow: 0 0 0 0 rgba(vars.$accent-color, 0);
     }
   }
   

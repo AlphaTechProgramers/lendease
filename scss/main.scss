@@ -1,39 +1,23 @@
+
 // scss/main.scss
 
-// Usar @use para abstracts con alias 'abs'
-@use "abstracts" as abs;
+@use "abstracts/variables";
+@use "abstracts/mixins";
+@use "abstracts/placeholders";
+@use "abstracts/functions";
 
-// Importar vendors
-@use "vendors/bootstrap";
-@use "vendors/fontawesome";
+@use "animations/animations";
 
-// Importar base
-@use 'base/reset';
-@use "base.typography";
-@use "base.base";
-@use "base.utilities";
+@use "base/base";
 
-// Importar layouts
-@use "layouts.header";
-@use "layouts.footer";
-@use "layouts.grid";
-@use "layouts.hero";
-@use "layouts.sidebar";
-@use "layouts.main-layout";
+@use "layout/hero";
+@use "layout/navbar";
+@use "layout/footer";
 
-// Importar components
-@use "components.buttons";
-@use "components.footer";
-@use "components.loan-calculator";
-@use "components.navbar";
-@use "components.forms";
-@use "components.cards";
-
-// Importar animations
-@use "animations.animations";
-
-// Importar pages
-@use "pages.home";
-// Importar themes
-@use "themes.light";
-@use "themes.dark";
+@use "components/loan-calculator";
+@use "components/buttons";
+@use "components/tables";
+@use "components/links";
+@use "components/accordion";
+@use "components/forms";
+@use "components/cards";

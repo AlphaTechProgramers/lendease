@@ -3,6 +3,9 @@
 // Variables de colores personalizados
 $primary-color: #2d2673; // Morado más oscuro
 $secondary-color: #323182;
+$third-color: #70099cb9; // Morado intermedio
+$accordion-bg: #323182c2;
+$accordion-hover-color: #3231825b;
 $gradiente: #ff00dd7c;
 $light-background: #d3dae2;
 $white-background: #ffffff;
@@ -27,6 +30,13 @@ $dark-theme-bg: #181818;
 $dark-theme-text: #f8f9fa;
 $dark-navbar-bg: #1f1b4b; // Morado aún más oscuro para el tema oscuro
 $dark-secondary-bg: #2a2a2a;
+
+
+
+.text-bg-primary-color {
+  background-color: $secondary-color !important; // Aplica el color al fondo
+  color: white !important; // Ajusta el texto para contraste
+}
 
 // Estilos base
 body {
@@ -133,16 +143,57 @@ body {
   align-items: center;
   gap: 10px;
 }
+.accordion {
+  .accordion-item {
+    .accordion-header {
+      .accordion-button {
+
+
+        // Estado por defecto (ni debajo del cursor ni desplegado)
+        
+        background-color: #f8f9fa;
+        color: #000;
+
+        // Cuando está debajo del cursor pero no desplegado
+        &:hover {
+          background-color: $accordion-hover-color;
+        
+          color: #333;
+        }
+
+        // Cuando está desplegado pero no debajo del cursor
+        &:not(.collapsed) {
+          background-color: $secondary-color;
+          color: white;
+        }
+
+        // Cuando está desplegado y debajo del cursor
+        &:not(.collapsed):hover {
+          background-color: $accordion-bg;
+          color: #ddd;
+        }
+      }
+    }
+  }
+}
+
+
+
 
 .enlaces {
   color: $primary-color;
   font-family: 'Segoe UI', sans-serif;
+  text-decoration: none;  // Elimina el subrayado por defecto
 
   &:hover {
-    color: color.adjust($primary-color, $lightness: 10%); // Reemplazo de lighten()
-    text-decoration: none;
+    color: $third-color;
+    
+    // Asegurarse de que el subrayado se mantenga eliminado en hover
+    text-decoration: none;  // Elimina el subrayado también cuando el cursor está encima
   }
 }
+
+
 
 .enlacesFotter {
   color: $text-color-light;
@@ -966,3 +1017,5 @@ body.dark-mode {
     }
   }
 }
+
+

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard Solicitante - LendEase{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Bienvenido, {{ current_user.email }}</h2>
+    <p>Desde aquí puedes gestionar tus solicitudes de crédito y actualizar tu información personal.</p>
+    
+    <hr>
+    
+    <!-- Sección de Datos Personales -->
+    <h3>Mis Datos Personales</h3>
+    <table class="table">
+        <tr>
+            <th>Nombre Completo</th>
+            <td>{{ datos_personales.nombre_so }} {{ datos_personales.apellido_paterno_so }} {{ datos_personales.apellido_materno_so }}</td>
+        </tr>
+        <tr>
+            <th>Género</th>
+            <td>{{ datos_personales.genero_so }}</td>
+        </tr>
+        <tr>
+            <th>Edad</th>
+            <td>{{ datos_personales.edad_so }}</td>
+        </tr>
+        <tr>
+            <th>Ubicación</th>
+            <td>{{ datos_personales.calle_so }} {{ datos_personales.numero_ext_so }}, {{ datos_personales.colonia_so }}, {{ datos_personales.municipio_so }}, {{ datos_personales.estado_so }}, {{ datos_personales.pais_so }}</td>
+        </tr>
+        <tr>
+            <th>CURP</th>
+            <td>{{ datos_personales.CURP_so }}</td>
+        </tr>
+        <tr>
+            <th>RFC</th>
+            <td>{{ datos_personales.RFC_so }}</td>
+        </tr>
+    </table>
+
+    <hr>
+    
+    <!-- Sección de Solicitudes -->
+    <h3>Mis Solicitudes de Crédito</h3>
+    <p>Estas son tus solicitudes actuales:</p>
+    {% if solicitudes %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Importe</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+                <tr>
+                    <td>{{ solicitud.id }}</td>
+                    <td>{{ solicitud.importe_cr }}</td>
+                    <td>
+                        {% if solicitud.estado_cr == 'aprobado' %}
+                            <span class="badge bg-success">Aprobado</span>
+                        {% elif solicitud.estado_cr == 'rechazada' %}
+                            <span class="badge bg-danger">Rechazada</span>
+                        {% elif solicitud.estado_cr == 'pendiente' %}
+                            <span class="badge bg-warning">Pendiente</span>
+                        {% elif solicitud.estado_cr == 'para reestructurar' %}
+                            <span class="badge bg-info">Para Reestructurar</span>
+                        {% elif solicitud.estado_cr == 'reestructurada' %}
+                            <span class="badge bg-primary">Reestructurada</span>
+                        {% elif solicitud.estado_cr == 'en revisión' %}
+                            <span class="badge bg-secondary">En Revisión</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if solicitud.estado_cr == 'pendiente' %}
+                            <a href="{{ url_for('main.restructurar_credito', credito_id=solicitud.id) }}" class="btn btn-warning btn-sm">Modificar</a>
+                        {% elif solicitud.estado_cr == 'aprobado' %}
+                            <a href="{{ url_for('main.solicitar_reestructuracion', credito_id=solicitud.id) }}" class="btn btn-info btn-sm">Solicitar Reestructuración</a>
+                        {% elif solicitud.estado_cr == 'para reestructurar' %}
+                            <span class="text-muted">En espera de revisión</span>
+                        {% elif solicitud.estado_cr == 'rechazada' %}
+                            <a href="{{ url_for('main.proceso_solicitud') }}" class="btn btn-success btn-sm">Nueva Solicitud</a>
+                        {% elif solicitud.estado_cr == 'reestructurada' %}
+                            <span class="text-success">Reestructurada con éxito</span>
+                        {% elif solicitud.estado_cr == 'en revisión' %}
+                            <span class="text-muted">En revisión por el gerente</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No tienes solicitudes de crédito registradas. Puedes crear una nueva solicitud si lo deseas.</p>
+    <a href="{{ url_for('main.proceso_solicitud') }}" class="btn btn-primary">Nueva Solicitud de Crédito</a>
+    {% endif %}
+</div>
+{% endblock %}

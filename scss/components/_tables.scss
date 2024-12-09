@@ -1,0 +1,37 @@
+@use "../abstracts" as abs;
+@use "sass:color";
+
+.table {
+  /* Fondo general de la tabla */
+  background-color: abs.$white-background;
+  color: abs.$text-color-dark; /* Color del texto */
+  border-collapse: collapse; /* Quita los espacios entre bordes */
+
+  /* Estilo para las cabeceras */
+  thead th {
+    background-color: abs.$primary-color; /* Fondo oscuro */
+    color: abs.$text-color-light; /* Texto blanco */
+    padding: 10px; /* Espaciado interno */
+    text-align: left;
+    border: 1px solid abs.$secondary-color; /* Bordes entre columnas */
+    font-weight: bold; /* Texto en negrita */
+  }
+
+  /* Estilo para las filas */
+  tbody tr {
+    background-color: abs.$white-background; /* Fondo para las filas normales */
+    border: 1px solid abs.$place-holder-color; /* Bordes entre filas */
+
+    /* Hover: efecto para cualquier fila */
+    &:hover {
+      background-color: abs.$secondary-color; /* Fondo al pasar el cursor */
+      color: abs.$text-color-light; /* Color del texto en hover */
+    }
+  }
+
+  /* Espaciado interno para celdas */
+  tbody td {
+    padding: 8px;
+    text-align: left;
+  }
+}

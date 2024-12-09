@@ -1,0 +1,37 @@
+@use "../abstracts" as abs;
+@use "sass:color";
+
+
+.accordion {
+    .accordion-item {
+      .accordion-header {
+        .accordion-button {
+  
+  
+          // Estado por defecto (ni debajo del cursor ni desplegado)
+          
+          background-color: #f8f9fa;
+          color: #000;
+  
+          // Cuando está debajo del cursor pero no desplegado
+          &:hover {
+            background-color: abs.$accordion-hover-color;
+          
+            color: #333;
+          }
+  
+          // Cuando está desplegado pero no debajo del cursor
+          &:not(.collapsed) {
+            background-color: abs.$secondary-color;
+            color: white;
+          }
+  
+          // Cuando está desplegado y debajo del cursor
+          &:not(.collapsed):hover {
+            background-color: abs.$accordion-bg;
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
