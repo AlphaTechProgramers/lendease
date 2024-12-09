@@ -7,7 +7,7 @@
     <h2>Editar Perfil</h2>
     <p>Actualiza tu información personal en el siguiente formulario.</p>
     
-    <form method="POST" action="{{ url_for('editar_perfil') }}">
+    <form method="POST" action="{{ url_for('main.editar_perfil') }}">
         {{ form.hidden_tag() }} <!-- Para manejar CSRF si se está utilizando Flask-WTF -->
 
         <div class="mb-3">
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Botón para guardar cambios -->
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class="cta-button">Guardar Cambios</button>
         <a href="{{ url_for('solicitante_dashboard') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>

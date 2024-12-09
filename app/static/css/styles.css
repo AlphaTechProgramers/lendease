@@ -1,0 +1,606 @@
+@charset "UTF-8";
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(31, 75, 143, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(31, 75, 143, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(31, 75, 143, 0);
+  }
+}
+body {
+  background-color: #ffffff;
+  color: #323182;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero {
+  position: relative;
+  min-height: 60vh;
+  color: #ffffff;
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(270deg, #09bfa0, rgba(255, 0, 221, 0.4862745098), #531c56, #09bfa0), url("../img/hero.jpg");
+  background-size: 800% 800%, cover;
+  background-position: 0% 50%, center;
+  background-repeat: no-repeat, no-repeat;
+  animation: GradientAnimation 15s ease infinite;
+}
+.hero .hero-content {
+  max-width: 800px;
+  width: 100%;
+}
+.hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}
+.hero .p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+@media (max-width: 768px) {
+  .hero .p {
+    font-size: 1rem;
+  }
+}
+
+@keyframes GradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.navbar {
+  background-color: #2d2673;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+.navbar .navbar-brand:hover {
+  color: #d3dae2;
+}
+.navbar .navbar-brand .logo {
+  width: 40px;
+  height: auto;
+  margin-right: 10px;
+}
+.navbar .nav-link {
+  color: #ffffff;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+.navbar .nav-link:hover {
+  color: #d3dae2;
+  background-color: rgb(60, 50.6666666667, 153.3333333333);
+  border-radius: 5px;
+}
+.navbar .btn {
+  background-color: #ffffff;
+  color: #2d2673;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  margin-left: 1.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.navbar .btn:hover {
+  background-color: rgb(67.5, 57, 172.5);
+  color: #ffffff;
+}
+.navbar .navbar-toggler {
+  border-color: #ffffff;
+}
+.navbar .navbar-toggler .navbar-toggler-icon {
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 30 30" ...');
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Esto asegura que el cuerpo ocupe todo el alto de la pantalla */
+}
+
+.container {
+  flex: 1; /* Esto permite que el contenido ocupe el espacio restante */
+}
+
+footer {
+  background-color: #2d2673;
+  color: #ffffff;
+  padding: 40px 0;
+  text-align: center;
+  margin-top: auto; /* Esto asegura que el footer se mantenga en la parte inferior */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+.footer-content .footer-section {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+.footer-content .footer-section h5 {
+  margin-bottom: 15px;
+  font-size: 1.25rem;
+  border-bottom: 2px solid #323182;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+.footer-content .footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+.footer-content .footer-section ul li {
+  margin-bottom: 10px;
+}
+.footer-content .footer-section ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-content .footer-section ul li a:hover {
+  color: #d3dae2;
+}
+.footer-content .footer-section p {
+  margin: 0;
+}
+
+.social-media {
+  margin-top: 20px;
+}
+.social-media a {
+  color: #ffffff;
+  margin: 0 10px;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+.social-media a:hover {
+  color: #d3dae2;
+}
+
+p {
+  margin-top: 20px;
+}
+
+.loan-calculator {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+.loan-calculator:hover {
+  transform: translateY(0);
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.1);
+}
+.loan-calculator h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #1f4b8f;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 10px;
+}
+.loan-calculator h2::after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 4px;
+  background-color: #1f4b8f;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+.loan-calculator .slider-section {
+  position: relative;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+  transition: all 0.3s ease;
+}
+.loan-calculator .slider-section .slider-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+.loan-calculator .slider-section input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #1f4b8f, rgb(62.6896551724, 121.8620689655, 213.3103448276));
+  outline: none;
+  margin-top: 10px;
+}
+e Préstamos .loan-calculator .slider-section input[type=range]:focus {
+  box-shadow: 0 0 5px #1f4b8f;
+}
+.loan-calculator .slider-section input[type=range]::-webkit-slider-thumb, .loan-calculator .slider-section input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background-color: #1f4b8f;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.loan-calculator .slider-section input[type=range]::-webkit-slider-thumb:hover, .loan-calculator .slider-section input[type=range]::-moz-range-thumb:hover {
+  background-color: rgb(21.9137931034, 53.0172413793, 101.0862068966);
+  transform: scale(1.1);
+}
+.loan-calculator .slider-section .slider-value {
+  position: absolute;
+  right: 0;
+  top: -30px;
+  font-size: 1rem;
+  background-color: #1f4b8f;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.5s forwards;
+}
+.loan-calculator .slider-section .slider-value.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.loan-calculator .loan-summary {
+  width: 100%;
+  border-top: 2px solid #1f4b8f;
+  border-bottom: 2px solid #1f4b8f;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  transition: border-color 0.3s ease;
+}
+.loan-calculator .loan-summary table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.loan-calculator .loan-summary td {
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  color: #555;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.loan-calculator .loan-summary td:first-child {
+  font-weight: 600;
+  color: #1f4b8f;
+}
+.loan-calculator .loan-summary td:last-child {
+  text-align: right;
+  font-weight: 500;
+  color: #1f4b8f;
+}
+.loan-calculator .loan-summary td.result {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.loan-calculator .loan-summary td.result.updated {
+  color: #28a745;
+  transform: scale(1.05);
+}
+.loan-calculator .registration-section {
+  text-align: center;
+  margin-top: 2rem;
+}
+.loan-calculator .registration-section .interest-info {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #777;
+  transition: color 0.3s ease;
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(31, 75, 143, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(31, 75, 143, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(31, 75, 143, 0);
+  }
+}
+
+.button,
+.submit-button,
+.cta-button,
+.register-button {
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.button.submit-button,
+.submit-button.submit-button,
+.cta-button.submit-button,
+.register-button.submit-button {
+  background-color: #2d2673;
+  color: #ffffff;
+}
+.button.submit-button:hover,
+.submit-button.submit-button:hover,
+.cta-button.submit-button:hover,
+.register-button.submit-button:hover {
+  background-color: rgb(67.5, 57, 172.5);
+}
+.button.cta-button,
+.submit-button.cta-button,
+.cta-button.cta-button,
+.register-button.cta-button {
+  background-color: rgb(67.5, 57, 172.5);
+  color: #ffffff;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.button.cta-button:hover,
+.submit-button.cta-button:hover,
+.cta-button.cta-button:hover,
+.register-button.cta-button:hover {
+  background-color: rgb(52.5, 44.3333333333, 134.1666666667);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.button.cta-button:active,
+.submit-button.cta-button:active,
+.cta-button.cta-button:active,
+.register-button.cta-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+.button.register-button,
+.submit-button.register-button,
+.cta-button.register-button,
+.register-button.register-button {
+  background-color: #1f4b8f;
+  color: #ffffff;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.button.register-button:hover,
+.submit-button.register-button:hover,
+.cta-button.register-button:hover,
+.register-button.register-button:hover {
+  background-color: #16396e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  animation: pulse 1s infinite;
+}
+.button.register-button:active,
+.submit-button.register-button:active,
+.cta-button.register-button:active,
+.register-button.register-button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.table {
+  /* Fondo general de la tabla */
+  background-color: #ffffff;
+  color: #323182; /* Color del texto */
+  border-collapse: collapse; /* Quita los espacios entre bordes */
+  /* Estilo para las cabeceras */
+  /* Estilo para las filas */
+  /* Espaciado interno para celdas */
+}
+.table thead th {
+  background-color: #2d2673; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+  padding: 10px; /* Espaciado interno */
+  text-align: left;
+  border: 1px solid #323182; /* Bordes entre columnas */
+  font-weight: bold; /* Texto en negrita */
+}
+.table tbody tr {
+  background-color: #ffffff; /* Fondo para las filas normales */
+  border: 1px solid #737373; /* Bordes entre filas */
+  /* Hover: efecto para cualquier fila */
+}
+.table tbody tr:hover {
+  background-color: #323182; /* Fondo al pasar el cursor */
+  color: #ffffff; /* Color del texto en hover */
+}
+.table tbody td {
+  padding: 8px;
+  text-align: left;
+}
+
+.enlaces {
+  color: #2d2673;
+  font-family: "Segoe UI", sans-serif;
+  text-decoration: none;
+}
+.enlaces:hover {
+  color: rgba(112, 9, 156, 0.7254901961);
+  text-decoration: none;
+}
+
+.enlacesFotter {
+  color: #ffffff;
+  font-family: "Segoe UI", sans-serif;
+}
+.enlacesFotter:hover {
+  color: hsl(0, 0%, 110%);
+  text-decoration: none;
+}
+
+.accordion .accordion-item .accordion-header .accordion-button {
+  background-color: #f8f9fa;
+  color: #000;
+}
+.accordion .accordion-item .accordion-header .accordion-button:hover {
+  background-color: rgba(50, 49, 130, 0.3568627451);
+  color: #333;
+}
+.accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  background-color: #323182;
+  color: white;
+}
+.accordion .accordion-item .accordion-header .accordion-button:not(.collapsed):hover {
+  background-color: rgba(50, 49, 130, 0.7607843137);
+  color: #ddd;
+}
+
+/* Estilo base para todos los campos de formulario (form-control) */
+.form-control {
+  background-color: #ffffff;
+  color: #323182;
+  border: 2px solid #2d2673;
+  /* Placeholder */
+  /* Hover (cuando el cursor pasa sobre el campo) */
+  /* Focus (cuando el campo está activo) */
+  /* Campos deshabilitados */
+}
+.form-control::placeholder {
+  color: #737373;
+  opacity: 1;
+}
+.form-control:hover {
+  border-color: rgba(112, 9, 156, 0.7254901961);
+}
+.form-control:focus {
+  outline: none;
+  border-color: #2d2673;
+  box-shadow: 0 0 5px rgba(147, 52, 187, 0.7254901961);
+}
+.form-control:disabled, .form-control[readonly] {
+  background-color: #555555;
+  color: #aaaaaa;
+  border-color: #555555;
+  cursor: not-allowed;
+}
+
+/* Personalización para selectores (form-select) */
+select.form-select {
+  background-color: #ffffff;
+  color: #323182;
+  border: 2px solid #2d2673;
+  /* Hover: cuando el usuario pasa el cursor por encima */
+  /* Focus: cuando el campo está enfocado */
+  /* Campos deshabilitados */
+}
+select.form-select:hover {
+  border-color: rgba(112, 9, 156, 0.7254901961);
+}
+select.form-select:focus {
+  outline: none;
+  border-color: #2d2673;
+  box-shadow: 0 0 5px rgba(147, 52, 187, 0.7254901961);
+}
+select.form-select:disabled, select.form-select[readonly] {
+  background-color: #555555;
+  color: #aaaaaa;
+  border-color: #555555;
+  cursor: not-allowed;
+}
+
+/* Personalización de los mensajes de error (text-danger) */
+.form-group .text-danger {
+  color: #ff0000;
+  font-size: 0.875rem;
+}
+
+.text-bg-primary-color {
+  background-color: #2d2673; /* Aquí debes colocar el color deseado */
+  color: #ffffff;
+}

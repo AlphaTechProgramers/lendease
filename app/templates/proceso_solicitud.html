@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Proceso de Solicitud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Proceso de Solicitud</h2>
+    <p class="text-center">Completa los datos requeridos para enviar tu solicitud.</p>
+
+    <form method="POST" class="mt-4">
+        {{ form.hidden_tag() }}
+
+        <!-- Campo Empresa -->
+        <div class="mb-3">
+            {{ form.empresa.label(class="form-label") }}
+            {{ form.empresa(class="form-control", placeholder="Ingresa el nombre de tu empresa") }}
+        </div>
+
+        <!-- Campo Puesto -->
+        <div class="mb-3">
+            {{ form.puesto.label(class="form-label") }}
+            {{ form.puesto(class="form-control", placeholder="Ingresa tu puesto") }}
+        </div>
+
+        <!-- Campo Antigüedad -->
+        <div class="mb-3">
+            {{ form.antiguedad.label(class="form-label") }}
+            {{ form.antiguedad(class="form-control", placeholder="Ejemplo: 2 años, 3 meses") }}
+        </div>
+
+        <!-- Campo Sueldo Mensual -->
+        <div class="mb-3">
+            {{ form.sueldo.label(class="form-label") }}
+            {{ form.sueldo(class="form-control", placeholder="Ingresa tu sueldo mensual") }}
+        </div>
+
+        <!-- Campo Tipo de Nómina -->
+        <div class="mb-3">
+            {{ form.nomina.label(class="form-label") }}
+            {{ form.nomina(class="form-select") }}
+        </div>
+
+        <!-- Campo Importe del Crédito -->
+        <div class="mb-3">
+            {{ form.importe.label(class="form-label") }}
+            {{ form.importe(class="form-control", placeholder="Ingresa el importe del crédito") }}
+        </div>
+
+        <!-- Campo Periodicidad de Pago -->
+        <div class="mb-3">
+            {{ form.periodicidad.label(class="form-label") }}
+            {{ form.periodicidad(class="form-select") }}
+        </div>
+
+        <!-- Campo Cantidad de Pago -->
+        <div class="mb-3">
+            {{ form.cantidad_pago.label(class="form-label") }}
+            {{ form.cantidad_pago(class="form-control", placeholder="Ingresa la cantidad de pago") }}
+        </div>
+
+        <!-- Botón Enviar -->
+        <div class="d-grid">
+            {{ form.submit(class="cta-button") }}
+        </div>
+    </form>
+
+    <!-- Mostrar errores del formulario -->
+    {% if form.errors %}
+        <ul class="alert alert-danger mt-4">
+            {% for field, errors in form.errors.items() %}
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

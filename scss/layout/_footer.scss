@@ -1,53 +1,91 @@
-// Importar variables y mixins
-@import "../abstracts/variables";
-@import "../abstracts/mixins";
+@use "../abstracts/variables" as vars;
 
-// Layout Footer Styling
-.layout-footer {
-  background-color: $primary-color;
-  color: $text-color-light;
-  padding: 2rem 1rem;
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Esto asegura que el cuerpo ocupe todo el alto de la pantalla */
+}
+
+.container {
+  flex: 1; /* Esto permite que el contenido ocupe el espacio restante */
+}
+
+footer {
+  background-color: vars.$primary-color;
+  color: vars.$text-color-light;
+  padding: 40px 0;
+  text-align: center;
+  margin-top: auto; /* Esto asegura que el footer se mantenga en la parte inferior */
+}
+
+.footer-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   @media (min-width: 768px) {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
   }
-  
-  .layout-footer__section {
-    margin: 1rem 0;
-    
-    @media (min-width: 768px) {
+
+  .footer-section {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+
+    h5 {
+      margin-bottom: 15px;
+      font-size: 1.25rem;
+      border-bottom: 2px solid vars.$secondary-color;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 10px;
+
+        a {
+          color: vars.$text-color-light;
+          text-decoration: none;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: vars.$link-hover-color;
+          }
+        }
+      }
+    }
+
+    p {
       margin: 0;
     }
   }
-  
-  .layout-footer__social-media {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    
-    a {
-      margin: 0 0.5rem;
-      color: $text-color-light;
-      font-size: 1.5rem;
-      transition: color 0.3s ease;
-      
-      &:hover {
-        color: $link-hover-color;
-      }
+}
+
+.social-media {
+  margin-top: 20px;
+
+  a {
+    color: vars.$text-color-light;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: vars.$link-hover-color;
     }
   }
-  
-  .layout-footer__copyright {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #ccc;
-    
-    @media (min-width: 768px) {
-      margin-top: 0;
-    }
-  }
+}
+
+p {
+  margin-top: 20px;
 }

@@ -1,51 +1,73 @@
 // Forms
+@use "../abstracts" as abs;
+@use "sass:color";
+/* Estilo base para todos los campos de formulario (form-control) */
+.form-control {
+  background-color: abs.$white-background;
+  color: abs.$text-color-dark;
+  border: 2px solid abs.$primary-color;
 
-.form-group {
-    margin-bottom: 1.5rem;
-  
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: $text-color-dark;
-    }
-  
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      @include transition(border-color);
-  
-      &:focus {
-        border-color: $accent-color;
-        outline: none;
-        box-shadow: 0 0 5px rgba($accent-color, 0.5);
-      }
-    }
-  
-    .error {
-      color: $error-color;
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-    }
+  /* Placeholder */
+  &::placeholder {
+    color: abs.$place-holder-color;
+    opacity: 1; // Hace que el placeholder sea completamente visible
   }
-  
-  .form-inline {
-    display: flex;
-    align-items: center;
-  
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-      flex: 1;
-      margin-right: 1rem;
-    }
-  
-    button {
-      @extend .button;
-    }
+
+  /* Hover (cuando el cursor pasa sobre el campo) */
+  &:hover {
+    border-color: abs.$third-color;
   }
-  
+
+  /* Focus (cuando el campo está activo) */
+  &:focus {
+    outline: none; // Quita el outline azul predeterminado del navegador
+    border-color: abs.$primary-color; // Borde supercontrastante
+    box-shadow: 0 0 5px abs.$focus-color; // Efecto "brillo"
+  }
+
+  /* Campos deshabilitados */
+  &:disabled,
+  &[readonly] {
+    background-color: #555555;  // Fondo gris oscuro para deshabilitados
+    color: #aaaaaa;              // Texto gris claro para deshabilitados
+    border-color: #555555;       // Borde gris oscuro para deshabilitados
+    cursor: not-allowed;         // Cursor para indicar que no se puede interactuar
+  }
+}
+
+/* Personalización para selectores (form-select) */
+select.form-select {
+  background-color: abs.$white-background; // Establece un color de fondo para los selectores
+  color: abs.$text-color-dark; // Color del texto en el select
+  border: 2px solid abs.$primary-color; // Borde normal para el select
+ 
+
+  /* Hover: cuando el usuario pasa el cursor por encima */
+  &:hover {
+    border-color: abs.$third-color; // Cambia el borde al pasar el mouse
+  }
+
+  /* Focus: cuando el campo está enfocado */
+  &:focus {
+    outline: none; // Quita el outline azul predeterminado del navegador
+    border-color: abs.$primary-color; // Borde al hacer foco
+    box-shadow: 0 0 5px abs.$focus-color; // Efecto de brillo
+  }
+
+  /* Campos deshabilitados */
+  &:disabled,
+  &[readonly] {
+    background-color: #555555;  // Fondo gris oscuro para deshabilitados
+    color: #aaaaaa;              // Texto gris claro para deshabilitados
+    border-color: #555555;       // Borde gris oscuro para deshabilitados
+    cursor: not-allowed;         // Cursor para indicar que no se puede interactuar
+  }
+
+}
+
+/* Personalización de los mensajes de error (text-danger) */
+.form-group .text-danger {
+  color: #ff0000;  // Color rojo brillante para los errores
+  font-size: 0.875rem;  // Tamaño de fuente más pequeño para los errores
+}
+

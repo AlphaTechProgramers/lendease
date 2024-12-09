@@ -1,42 +1,9 @@
 // Cards
+@use "../abstracts" as abs;
+@use "sass:color";
 
-.card {
-    background-color: $card-bg;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    @include transition(box-shadow, transform);
-  
-    &:hover {
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-      transform: translateY(-5px);
-    }
-  
-    &__title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: $accent-color;
-    }
-  
-    &__content {
-      font-size: 1rem;
-      color: $text-color-dark;
-    }
-  
-    &__footer {
-      margin-top: 1.5rem;
-      text-align: right;
-  
-      .card__button {
-        @extend .button;
-        background-color: $secondary-color;
-        color: $text-color-light;
-  
-        &:hover {
-          background-color: color.adjust($secondary-color, $lightness: 10%);
-        }
-      }
-    }
-  }
-  
+.text-bg-primary-color {
+  background-color: abs.$primary-color; /* Aquí debes colocar el color deseado */
+  color: abs.$text-color-light;
+}
+

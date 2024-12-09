@@ -7,4 +7,5 @@ plain_password = "MiContrasenaSegura"
 hashed_password = generate_password_hash(plain_password)
 
 print("Hashed Password:", hashed_password)
-    27 | gamueljb@gmail.com      
+
+#  27 | gamueljb@gmail.com      

@@ -74,6 +74,7 @@ cantidad_pago_cr int,
 estado_cr varchar (20),
 interes_cr double,
 Id_so int,
+motivo_rechazo_cr varchar (300),
 foreign key (Id_so) references Solicitante(Id_so)
 );
 
@@ -132,6 +133,29 @@ Id_so int,
 foreign key (Id_ad) references Administrador(Id_Ad),
 foreign key (Id_so) references Solicitante(Id_so)
 );
+
+CREATE TABLE ReestructuracionCredito (
+    Id_re INT AUTO_INCREMENT PRIMARY KEY,
+    Id_cr INT NOT NULL,
+    nuevo_monto DECIMAL(10, 2),
+    nuevo_plazo INT,
+    estado VARCHAR(20) DEFAULT 'pendiente',
+    comentario_solicitante TEXT,
+    comentario_respuesta TEXT,
+    fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Id_cr) REFERENCES Credito(Id_cr)
+);
+
+CREATE TABLE HistorialEstadosCredito (
+    id SERIAL PRIMARY KEY,
+    credito_id INT NOT NULL,
+    estado_anterior VARCHAR(50),
+    estado_nuevo VARCHAR(50),
+    fecha TIMESTAMP DEFAULT NOW(),
+    comentario TEXT,
+    FOREIGN KEY (credito_id) REFERENCES Credito(Id_cr)
+);
+
 
 INSERT INTO Gerente (correo_ge, contrasena_ge, genero_ge, edad_ge, apellido_paterno_ge, apellido_materno_ge, nombre_ge) VALUES ('ramueljb@gmail.com', 'scrypt:32768:8:1$IC7CfMr1BtZnh2Ta$2669a3c02c781fbfb76d9a348696332f6ed63065de946e5d5e99e7dbc174c373952b52cf40c4cb84c597e25f907139ae9088825a065581a6b1a39591b9fc298c', 'masculino', 18, 'Botello', 'Juarez', 'Samuel');
 
