@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Cronograma de Pagos</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Monto</th>
+            <th>Fecha de Vencimiento</th>
+            <th>Fecha de Pago</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if pagos %}
+        {% for pago in pagos %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ pago.monto_pago }}</td>
+                <td>{{ pago.fecha_vencimiento }}</td>
+                <td>{{ pago.fecha_pago or 'Pendiente' }}</td>
+                <td>{{ pago.estado_pago }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="5">No hay pagos registrados para este crédito.</td>
+        </tr>
+    {% endif %}
+    </tbody>
+</table>
+{% endblock %}

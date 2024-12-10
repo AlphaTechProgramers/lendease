@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Registro - Paso 1</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ session.get('nombre', '') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido_paterno">Apellido Paterno:</label>
+            <input type="text" id="apellido_paterno" name="apellido_paterno" class="form-control" value="{{ session.get('apellido_paterno', '') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido_materno">Apellido Materno:</label>
+            <input type="text" id="apellido_materno" name="apellido_materno" class="form-control" value="{{ session.get('apellido_materno', '') }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+    </form>
+</div>
+{% endblock %}

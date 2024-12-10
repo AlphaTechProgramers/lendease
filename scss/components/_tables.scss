@@ -20,7 +20,7 @@
   /* Estilo para las filas */
   tbody tr {
     background-color: abs.$white-background; /* Fondo para las filas normales */
-    border: 1px solid abs.$place-holder-color; /* Bordes entre filas */
+    border: 1px solid abs.$primary-color; /* Bordes entre filas */
 
     /* Hover: efecto para cualquier fila */
     &:hover {
@@ -30,8 +30,11 @@
   }
 
   /* Espaciado interno para celdas */
+ 
+
   tbody td {
     padding: 8px;
     text-align: left;
+    border: 2px solid abs.$primary-color; /* Agregar un marco de color primario */
   }
 }

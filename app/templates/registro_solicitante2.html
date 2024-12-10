@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Registro - Paso 2</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado" class="form-control" value="{{ session.get('estado', '') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="municipio">Municipio:</label>
+            <input type="text" id="municipio" name="municipio" class="form-control" value="{{ session.get('municipio', '') }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Siguiente</button>
+        <a href="{{ url_for('registro_paso_1') }}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+{% endblock %}

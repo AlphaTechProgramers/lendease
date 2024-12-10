@@ -12,30 +12,42 @@
     <!-- Sección de Datos Personales -->
     <h3>Mis Datos Personales</h3>
     <table class="table">
+        <thead>
         <tr>
             <th>Nombre Completo</th>
             <td>{{ datos_personales.nombre_so }} {{ datos_personales.apellido_paterno_so }} {{ datos_personales.apellido_materno_so }}</td>
         </tr>
+        </thead>
+        <thead>
         <tr>
             <th>Género</th>
             <td>{{ datos_personales.genero_so }}</td>
         </tr>
+    </thead>
+        <thead>
         <tr>
             <th>Edad</th>
             <td>{{ datos_personales.edad_so }}</td>
         </tr>
+    </thead>
+        <thead>
         <tr>
             <th>Ubicación</th>
             <td>{{ datos_personales.calle_so }} {{ datos_personales.numero_ext_so }}, {{ datos_personales.colonia_so }}, {{ datos_personales.municipio_so }}, {{ datos_personales.estado_so }}, {{ datos_personales.pais_so }}</td>
         </tr>
+    </thead>
+        <thead>
         <tr>
             <th>CURP</th>
             <td>{{ datos_personales.CURP_so }}</td>
         </tr>
+    </thead>
+        <thead>
         <tr>
             <th>RFC</th>
             <td>{{ datos_personales.RFC_so }}</td>
         </tr>
+    </thead>
     </table>
 
     <hr>
@@ -77,7 +89,7 @@
                         {% if solicitud.estado_cr == 'pendiente' %}
                             <a href="{{ url_for('main.restructurar_credito', credito_id=solicitud.id) }}" class="btn btn-warning btn-sm">Modificar</a>
                         {% elif solicitud.estado_cr == 'aprobado' %}
-                            <a href="{{ url_for('main.solicitar_reestructuracion', credito_id=solicitud.id) }}" class="btn btn-info btn-sm">Solicitar Reestructuración</a>
+                            <a href="{{ url_for('main.restructurar_credito', credito_id=solicitud.id) }}" class="btn btn-info btn-sm">Solicitar Reestructuración</a>
                         {% elif solicitud.estado_cr == 'para reestructurar' %}
                             <span class="text-muted">En espera de revisión</span>
                         {% elif solicitud.estado_cr == 'rechazada' %}
@@ -94,7 +106,10 @@
     </table>
     {% else %}
     <p>No tienes solicitudes de crédito registradas. Puedes crear una nueva solicitud si lo deseas.</p>
-    <a href="{{ url_for('main.proceso_solicitud') }}" class="btn btn-primary">Nueva Solicitud de Crédito</a>
+    <a href="{{ url_for('main.proceso_solicitud') }}" class="cta-button">Nueva Solicitud de Crédito</a>
     {% endif %}
 </div>
+{% for solicitud in solicitudes %}
+    <a href="{{ url_for('main.mis_pagos', credito_id=solicitud.id) }}" class="cta-button">Mis pagos</a>
+{% endfor %}
 {% endblock %}

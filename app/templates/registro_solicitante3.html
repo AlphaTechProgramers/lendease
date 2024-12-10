@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Registro - Paso 3</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="rfc">RFC:</label>
+            <input type="text" id="rfc" name="rfc" class="form-control" value="{{ session.get('rfc', '') }}" required>
+        </div>
+        <div class="form-group">
+            <label for="curp">CURP:</label>
+            <input type="text" id="curp" name="curp" class="form-control" value="{{ session.get('curp', '') }}" required>
+        </div>
+        <button type="submit" class="btn btn-success">Finalizar</button>
+        <a href="{{ url_for('registro_paso_2') }}" class="btn btn-secondary">Regresar</a>
+    </form>
+</div>
+{% endblock %}

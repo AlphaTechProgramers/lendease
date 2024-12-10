@@ -5,12 +5,11 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Panel del Gerente</h2>
-    <p>Desde este panel, puedes gestionar todas las solicitudes de crédito y la información de los solicitantes, además de generar llaves de uso único.</p>
     <hr>
 
-    <!-- Sección de Solicitudes Pendientes -->
+    <!-- Solicitudes Pendientes -->
     <h3>Solicitudes Pendientes de Aprobación</h3>
-    <table class="table table table-hover">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -27,7 +26,15 @@
                 {% for solicitud in solicitudes_pendientes %}
                 <tr>
                     <td>{{ solicitud.id_cr }}</td>
-                    <td>{{ solicitud.solicitante_email }}</td>
+                    <td>
+                        <a href="{{ url_for('gerente.detalle_solicitante', Id_so=solicitud.Id_so) }}"
+                        class="text-primary"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Empresa: {{ solicitud.empresa }} | Puesto: {{ solicitud.puesto }} | Sueldo: {{ solicitud.sueldo }}">
+                        {{ solicitud.solicitante_email }}
+                     </a>
+                    </td>
                     <td>{{ solicitud.importe_cr }}</td>
                     <td>{{ solicitud.periodicidad_cr }}</td>
                     <td>{{ solicitud.cantidad_pago_cr }}</td>
@@ -50,8 +57,9 @@
         </tbody>
     </table>
 
-    <h3>Reestructuraciones Pendientes</h3>
-    <table class="table table table-hover">
+    <!-- Solicitudes en Revisión -->
+    <h3>Solicitudes en Revisión</h3>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -64,34 +72,101 @@
             </tr>
         </thead>
         <tbody>
-            {% if reestructuraciones %}
-            {% for solicitud in reestructuraciones %}
+            {% if solicitudes_en_revision %}
+                {% for solicitud in solicitudes_en_revision %}
                 <tr>
                     <td>{{ solicitud.id_cr }}</td>
-                    <td>{{ solicitud.solicitante_email }}</td>
+                    <td>
+                    <a href="{{ url_for('gerente.detalle_solicitante', Id_so=solicitud.Id_so) }}"
+                       class="text-primary"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       title="Empresa: {{ solicitud.empresa }} | Puesto: {{ solicitud.puesto }} | Sueldo: {{ solicitud.sueldo }}">
+                       {{ solicitud.solicitante_email }}
+                    </a>
+                    </td>
                     <td>{{ solicitud.importe_cr }}</td>
                     <td>{{ solicitud.periodicidad_cr }}</td>
                     <td>{{ solicitud.cantidad_pago_cr }}</td>
                     <td>{{ solicitud.estado_cr }}</td>
                     <td>
-                        <!-- Aprobar Reestructuración -->
-                        <form action="{{ url_for('gerente.aprobar_reestructuracion', Id_cr=solicitud.id_cr) }}" method="POST" style="display:inline;">
-                            <button type="submit" class="btn btn-success">Aprobar</button>
+                        <form method="POST" action="{{ url_for('gerente.aprobar_reestructuracion', Id_cr=solicitud.id_cr, Id_so=solicitud.Id_so) }}" class="d-inline">
+                            <button type="submit" class="btn btn-success btn-sm">Aprobar</button>
                         </form>
-                        <!-- Rechazar Reestructuración -->
-                        <form action="{{ url_for('gerente.rechazar_reestructuracion', Id_cr=solicitud.id_cr) }}" method="POST" style="display:inline;">
-                            <button type="submit" class="btn btn-danger">Rechazar</button>
+                        <form method="POST" action="{{ url_for('gerente.rechazar_reestructuracion', Id_cr=solicitud.id_cr, Id_so=solicitud.Id_so) }}" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
                         </form>
                     </td>
                 </tr>
-            {% endfor %}
+                {% endfor %}
             {% else %}
             <tr>
-                <td colspan="7" class="text-center">No hay solicitudes pendientes.</td>
+                <td colspan="7" class="text-center">No hay solicitudes en revisión.</td>
             </tr>
             {% endif %}
         </tbody>
     </table>
 
+<!-- Reestructuraciones -->
+<h3>Solicitudes para Reestructuración</h3>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Solicitante</th>
+            <th>Importe</th>
+            <th>Periodicidad</th>
+            <th>Cantidad de Pago</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if reestructuraciones %}
+            {% for solicitud in reestructuraciones %}
+            <tr>
+                <td>{{ solicitud.id_cr }}</td>
+                <td>
+                    <a href="{{ url_for('gerente.detalle_solicitante', Id_so=solicitud.Id_so) }}"
+                       class="text-primary"
+                       data-bs-toggle="tooltip"
+                       data-bs-placement="top"
+                       title="Empresa: {{ solicitud.empresa }} | Puesto: {{ solicitud.puesto }} | Sueldo: {{ solicitud.sueldo }}">
+                       {{ solicitud.solicitante_email }}
+                    </a>
+                </td>
+                <td>{{ solicitud.importe_cr }}</td>
+                <td>{{ solicitud.periodicidad_cr }}</td>
+                <td>{{ solicitud.cantidad_pago_cr }}</td>
+                <td>{{ solicitud.estado_cr }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('gerente.aprobar_reestructuracion', Id_cr=solicitud.id_cr) }}" class="d-inline">
+                        <button type="submit" class="btn btn-success btn-sm">Aprobar</button>
+                    </form>
+                    <form method="POST" action="{{ url_for('gerente.rechazar_reestructuracion', Id_cr=solicitud.id_cr) }}" class="d-inline">
+                        <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="7" class="text-center">No hay solicitudes para reestructurar.</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    });
+</script>
+
+
 {% endblock %}
