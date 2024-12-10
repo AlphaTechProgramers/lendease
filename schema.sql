@@ -75,6 +75,10 @@ estado_cr varchar (20),
 interes_cr double,
 Id_so int,
 motivo_rechazo_cr varchar (300),
+interes_cr DECIMAL(5, 2),
+fecha_creacion DATE,
+fecha_aprobacion DATE,
+fecha_vencimiento DATE
 foreign key (Id_so) references Solicitante(Id_so)
 );
 
@@ -154,6 +158,16 @@ CREATE TABLE HistorialEstadosCredito (
     fecha TIMESTAMP DEFAULT NOW(),
     comentario TEXT,
     FOREIGN KEY (credito_id) REFERENCES Credito(Id_cr)
+);
+
+CREATE TABLE Pagos (
+    Id_pago INT PRIMARY KEY AUTO_INCREMENT,
+    Id_cr INT,
+    monto_pago DECIMAL(10, 2),
+    fecha_vencimiento DATE,
+    fecha_pago DATE,
+    estado_pago VARCHAR(50), -- Pendiente, Pagado, Atrasado
+    FOREIGN KEY (Id_cr) REFERENCES Credito(Id_cr)
 );
 
 

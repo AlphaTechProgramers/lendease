@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Detalle del Solicitante{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Detalle del Solicitante</h2>
+    <hr>
+    <h3>Información Personal</h3>
+    <table class="table table-striped">
+        <tr><th>Nombre</th><td>{{ detalle_solicitante[0].nombre_so }} {{ detalle_solicitante[0].apellido_paterno_so }} {{ detalle_solicitante[0].apellido_materno_so }}</td></tr>
+        <tr><th>Género</th><td>{{ detalle_solicitante[0].genero_so }}</td></tr>
+        <tr><th>Edad</th><td>{{ detalle_solicitante[0].edad_so }}</td></tr>
+        <tr><th>CURP</th><td>{{ detalle_solicitante[0].CURP_so }}</td></tr>
+        <tr><th>RFC</th><td>{{ detalle_solicitante[0].RFC_so }}</td></tr>
+        <tr><th>Dirección</th><td>{{ detalle_solicitante[0].calle_so }} {{ detalle_solicitante[0].numero_ext_so }}, {{ detalle_solicitante[0].colonia_so }}, {{ detalle_solicitante[0].municipio_so }}, {{ detalle_solicitante[0].estado_so }}, {{ detalle_solicitante[0].pais_so }}</td></tr>
+    </table>
+    
+    <h3>Información de Empleo</h3>
+    <table class="table table-striped">
+        <tr><th>Empresa</th><td>{{ detalle_solicitante[0].empresa_tr }}</td></tr>
+        <tr><th>Puesto</th><td>{{ detalle_solicitante[0].puesto_tr }}</td></tr>
+        <tr><th>Sueldo</th><td>{{ detalle_solicitante[0].sueldo_tr }}</td></tr>
+        <tr><th>Tipo de Nómina</th><td>{{ detalle_solicitante[0].tipo_nomina_tr }}</td></tr>
+        <tr><th>Antigüedad</th><td>{{ detalle_solicitante[0].antiguedad }}</td></tr>
+    </table>
+    
+    <h3>Créditos</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Importe</th>
+                <th>Periodicidad</th>
+                <th>Cantidad de Pago</th>
+                <th>Estado</th>
+                <th>Motivo de Rechazo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for credito in detalle_solicitante %}
+            <tr>
+                <td>{{ credito.Id_cr }}</td>
+                <td>{{ credito.importe_cr }}</td>
+                <td>{{ credito.periodicidad_cr }}</td>
+                <td>{{ credito.cantidad_pago_cr }}</td>
+                <td>{{ credito.estado_cr }}</td>
+                <td>{{ credito.motivo_rechazo_cr or 'N/A' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
